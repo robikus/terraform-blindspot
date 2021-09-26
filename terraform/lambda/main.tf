@@ -1,4 +1,4 @@
-# I am using this to generate a lambda zip file
+# Lambda source code needs to be zipped.
 data "archive_file" "lambda_zip" {
   type        = "zip"
   source_file = "./lambda/my_lambda.py"
@@ -16,6 +16,7 @@ resource "aws_lambda_function" "my_lambda" {
   tags = {
     create_datetime = timestamp()
   }
+  # Lambda operates in UTC by default
   environment {
     variables = {
       TZ = "Europe/Prague"
@@ -23,6 +24,7 @@ resource "aws_lambda_function" "my_lambda" {
   }
 }
 
+# basic Lambda's execution role
 resource "aws_iam_role" "lambda_role" {
   name               = "basic_lambda_role"
   assume_role_policy = <<EOF
@@ -44,6 +46,7 @@ resource "aws_iam_role" "lambda_role" {
 EOF
 }
 
+# additional policies needed to work with S3 objects
 resource "aws_iam_policy" "lambda_policies" {
   name        = "lambda_policies"
   description = "Policies for getting Lambda tags, interact with SQS"
