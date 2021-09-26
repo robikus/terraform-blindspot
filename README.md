@@ -51,6 +51,8 @@ There are 2 buckets created (dev & prod). Both are publicly available and flagge
 
 ## Deployment process
 
+![Alt text](./terraform_project_deploy.jpeg "Deployment workflow")
+
 I am using Terraform Cloud for better integration with GitHub actions and AWS. 
 States and plans are stored in Terraform Cloud.
 
