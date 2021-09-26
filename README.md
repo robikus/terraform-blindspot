@@ -4,32 +4,31 @@ Robert Polakovic
 
 # Project
 
-This is my test Terraform project. The goal of this project is to learn Terraform and how it works with AWS.
+This is my simple Terraform project. The goal was to learn Terraform and how it interacts with AWS. I wanted to build a simple application/workflow on AWS free tier using Terraform.
 
-I want to build a simple infrastructure on AWS free tier using Terraform.
+Because this is a sample, public repository, I put a lot of inline comments into the code to explain it.
 
-## 1. Upload Dags:
+## Limitations
 
-```bash
-export AWS_PROFILE={PROFILE}
-export S3_CONFIG_BUCKET=nz-co-loyalty-{ENV_NAME}-config
-```
+The project is still in progress and I want to add more features in the future. I havent really managed to implement everything I wanted because of other projects I had to work on.
 
-To just upload a specific DAG to your specified S3 bucket, run the deploy script for the dag you want to upload
+## Tech stack
 
-For example, if you wanted to upload `hw_reconciliation`
-```bash
-./hw_reconciliation/deploy.sh
+1. Terraform + python code
+2. GitHub actions for CI/CD 
+3. Terraform Cloud for better integration with GitHub (used for storing Terraform state etc.)
+4. AWS as the main technology
 
-```
+## Project structure
 
-## Terraform
+1. AWS API Gateway - new API
+2. Lambda for processing requests and generate response
+3. S3 - index.html containing the Lambda's response
 
-### Author
+![Alt text](./myproject.jpeg "Project workflow")
 
-### Project structure
 
-### Deployment process
+## Deployment process
 
 I am using Terraform Cloud for better integration with GitHub actions and AWS. 
 States and plans are stored in Terraform Cloud.
@@ -43,7 +42,7 @@ How deployemnt works in a nutshell:
 - AWS credentials are stored in Terraform Cloud account (GitHub uses only Terraform Cloud credentials)
 - Terraform deployes AWS resources
 
-### tfvars
+## tfvars
 
 Tfvars are great for storing enviroment specific variables but I could not make tfvars work with GitHub Actions.
 
